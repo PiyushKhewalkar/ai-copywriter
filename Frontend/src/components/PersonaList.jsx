@@ -11,7 +11,18 @@ import {
   CardTitle,
 } from "@/components/ui/card.tsx";
 
-import {Badge} from "@/components/ui/badge.tsx"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
+import {Button} from "@/components/ui/button.tsx"
+
+import menuDots from "../assets/menu-dots-vertica.svg";
 
 function PersonaList() {
   const [allPersona, setAllPersona] = useState([]);
@@ -22,27 +33,26 @@ function PersonaList() {
 
   return (
     <div className="m-5">
-      <div className="space-y-1 my-5">
-      <h2 className="font-medium text-2xl">Buyer Personas</h2>
-      <p className="text-[12px]">Click on a box to view details info about the profile</p>
+      <div className="my-5">
+      <h2 className="font-medium text-2xl">Dream Buyer Avatars</h2>
       </div>
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
         {allPersona.length > 0 ? (
           allPersona.map((persona, index) => (
             <Card key={index} className="rounded-sm w-full p-3">
               <CardContent className="space-y-2">
-                <div className="bg-[#ffffff] text-[10px] text-black px-[4px] py-[2px] rounded-[3px] w-fit">{persona.jobTitle}</div>
-                <CardTitle>{persona.name}</CardTitle>
-                <div className="text-[10px] font-light text-gray-400 flex justify-between">
-                    <div>
-                    <p className="w-fit"><span className="font-medium">Age: </span>{persona.ageRange}</p>
-                    <p className="w-fit"><span className="font-medium">Gender: </span>{persona.gender}</p>
-                    </div>
-                    <div>
-                    <p className="w-fit"><span className="font-medium">Lives in: </span>{persona.location}</p>
-                    <p className="w-fit"><span className="font-medium">Works at: </span>{persona.industry}</p>
-                    <p className="w-fit"><span className="font-medium">Income Level: </span>{persona.incomeLevel}</p>
-                    </div>
+                  <div className="bg-[#5271ff] text-[12px] font-medium px-[8px] py-[5px] rounded-[3px] w-fit">{persona.jobTitle}</div>
+                  <CardTitle className="text-2xl my-2">{persona.name}</CardTitle>
+                  <p className="w-fit text-[16px] opacity-70 text-gray-300">{persona.twoOrThreeLinerDescription}</p>
+                <div className="flex justify-between">
+                <Button className="rounded-[4px]" variant="secondary">View Profile</Button>
+                <DropdownMenu>
+                  <DropdownMenuTrigger><img className="h-4 w-4" style={{ filter: "invert(1)" }} src={menuDots} alt="Menu Dots" /></DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuItem>Edit</DropdownMenuItem>
+                    <DropdownMenuItem>Delete</DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
                 </div>
               </CardContent>
             </Card>

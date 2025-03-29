@@ -2,6 +2,7 @@ import { z } from "zod";
 
 const personaZodResponseFormat = z.object({
    name: z.string(),
+   twoOrThreeLinerDescription :z.string(),
    ageRange: z.string(),
    gender: z.enum(["Male", "Female", "Other"]),
    location: z.string().optional(),

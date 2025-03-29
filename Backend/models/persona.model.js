@@ -7,6 +7,11 @@ const PersonaSchema = new mongoose.Schema({
     required : true
    },
 
+   twoOrThreeLinerDescription : {
+    type : String,
+    required : true
+   },
+
    ageRange : {
     type : String,
     required : true
